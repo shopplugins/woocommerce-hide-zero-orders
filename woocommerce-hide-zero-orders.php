@@ -40,13 +40,10 @@ if ( is_admin() ) {
 	function sp_orders_by_restrict_option( $vars ) {
 		global $typenow;
 		$key = 'post__in';
-error_log("here 1");
+
 		if ( 'shop_order' == $typenow && isset( $_GET['sp_order_view'] ) ) {
-			error_log("here 2");
 			if ( 'non-zero' == $_GET['sp_order_view'] ) {
-				error_log("here 3");
 				if ( ! empty( $key ) ) {
-					error_log("here 4");
 					$vars[ $key ] = get_posts( array(
 						'posts_per_page' => -1,
 						'post_type'      => 'shop_order',
