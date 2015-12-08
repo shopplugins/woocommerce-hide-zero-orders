@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Hide Zero Orders
  * Plugin URI: https://shopplugins.com
  * Description: Adds a filter to the Edit Orders admin page to show all or non-zero orders. Handy to hide $0 orders.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com
  * Textdomain: sp-hide-zero-orders
