@@ -36,11 +36,10 @@ if ( is_admin() ) {
 	}
 
 
-	add_filter( 'request', 'sp_orders_by_restrict_option' );
+	add_filter( 'request', 'sp_orders_by_restrict_option', 100 );
 	function sp_orders_by_restrict_option( $vars ) {
 		global $typenow;
-		$key = 'post__in';
-
+		$key = 'post__not_in';
 		if ( 'shop_order' == $typenow && isset( $_GET['sp_order_view'] ) ) {
 			if ( 'non-zero' == $_GET['sp_order_view'] ) {
 				if ( ! empty( $key ) ) {
@@ -54,8 +53,8 @@ if ( is_admin() ) {
 						'meta_query'     => array(
 							array(
 								'key'     => '_order_total',
-								'value'   => 0,
-								'compare' => '>',
+								'value'   => '0.00',
+								'compare' => '=',
 							),
 						),
 					) );
