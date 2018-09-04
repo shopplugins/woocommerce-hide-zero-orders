@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: WooCommerce Hide Zero Orders
- * Plugin URI: https://shopplugins.com
- * Description: Adds a filter to the Edit Orders admin page to show all or non-zero orders. Handy to hide $0 orders.
+ * Plugin URI: https://github.com/shopplugins/woocommerce-hide-zero-orders
+ * Description: Adds a filter to the Edit Orders admin page to show all or show non-zero orders. Handy to hide $0 orders.
  * Version: 1.0.0
  * Author: Shop Plugins
  * Author URI: https://shopplugins.com
- * Textdomain: sp-hide-zero-orders
+ * Text Domain: sp-hide-zero-orders
  */
 
 if ( is_admin() ) {
@@ -17,7 +17,6 @@ if ( is_admin() ) {
 		if ( 'shop_order' != $typenow ) {
 			return;
 		}
-
 
 		?>
 		<select name='sp_order_view' id='dropdown_sp_order_view'>
@@ -34,7 +33,6 @@ if ( is_admin() ) {
 		</select>
 		<?php
 	}
-
 
 	add_filter( 'request', 'sp_orders_by_restrict_option', 100 );
 	function sp_orders_by_restrict_option( $vars ) {
