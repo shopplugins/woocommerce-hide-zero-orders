@@ -29,7 +29,12 @@ if ( is_admin() ) {
 			        if ( isset( $_GET['sp_order_view'] ) && $_GET['sp_order_view'] ) {
 				        selected( 'non-zero', $_GET['sp_order_view'] );
 			        }
-			        ?>value="non-zero"><?php esc_html_e( 'Show non-zero orders', 'sp-hide-zero-orders' ); ?></option>
+			        ?>value="non-zero"><?php esc_html_e( 'Show non-zero orders', 'sp-show-zero-orders' ); ?></option>
+			<option <?php
+			        if ( isset( $_GET['sp_order_view'] ) && $_GET['sp_order_view'] ) {
+				        selected( 'all-zero', $_GET['sp_order_view'] );
+			        }
+			        ?>value="all-zero"><?php esc_html_e( 'Show zero value orders', 'sp-show-zero-orders' ); ?></option>
 		</select>
 		<?php
 	}
@@ -53,6 +58,28 @@ if ( is_admin() ) {
 								'key'     => '_order_total',
 								'value'   => '0.00',
 								'compare' => '=',
+							),
+						),
+					) );
+
+				}
+
+			} // if non-zero
+
+			if ( 'all-zero' == $_GET['sp_order_view'] ) {
+				if ( ! empty( $key ) ) {
+					$vars[ $key ] = get_posts( array(
+						'posts_per_page' => -1,
+						'post_type'      => 'shop_order',
+						'post_status'    => 'any',
+						'fields'         => 'ids',
+						'orderby'        => 'date',
+						'order'          => 'DESC',
+						'meta_query'     => array(
+							array(
+								'key'     => '_order_total',
+								'value'   => '0.00',
+								'compare' => '!=',
 							),
 						),
 					) );
